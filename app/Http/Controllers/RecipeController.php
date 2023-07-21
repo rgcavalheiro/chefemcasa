@@ -20,8 +20,8 @@ class RecipeController extends Controller
         // Make the API call to get recipes based on the ingredients
         $response = Http::get('https://api.edamam.com/search', [
             'q' => $searchTerm,
-            'app_id' => '80884960',
-            'app_key' => '085b927d8834edb5a51c2c0131a7f7c1',
+            'app_id' => env('EDAMAM_API_ID'),
+            'app_key' => env('EDAMAM_API_KEY'),
             'from' => 0,
             'to' => 10, // Limit the number of recipes to be returned
         ]);
@@ -36,7 +36,7 @@ class RecipeController extends Controller
 
             // Instanciar o cliente de tradução do Google Cloud
             $translateClient = new TranslateClient([
-                'key' => 'AIzaSyCUZWyZKIjM9dYQK6zvxDfgRMW4RFypGzk', // Sua API key aqui
+                'key' => env('GOOGLE_TRANSLATE_API_KEY'), // Sua API key aqui
             ]);
 
             // Iterar sobre os dados das receitas
@@ -73,8 +73,8 @@ class RecipeController extends Controller
         // Make the API call to get recipes based on the ingredients
         $response = Http::get('https://api.edamam.com/search', [
             'q' => $searchTerm,
-            'app_id' => '80884960',
-            'app_key' => '085b927d8834edb5a51c2c0131a7f7c1',
+            'app_id' => env('EDAMAM_API_ID'),
+            'app_key' => env('EDAMAM_API_KEY'),
             'from' => 0,
             'to' => 10, // Limit the number of recipes to be returned
         ]);
@@ -89,7 +89,7 @@ class RecipeController extends Controller
 
             // Instanciar o cliente de tradução do Google Cloud
             $translateClient = new TranslateClient([
-                'key' => 'AIzaSyCUZWyZKIjM9dYQK6zvxDfgRMW4RFypGzk', // Sua API key aqui
+                'key' => env('GOOGLE_TRANSLATE_API_KEY'), // Sua API key aqui
             ]);
 
             // Iterar sobre os dados das receitas
