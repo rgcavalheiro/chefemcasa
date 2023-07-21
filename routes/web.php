@@ -34,3 +34,7 @@ Route::get('/favorites', 'App\Http\Controllers\FavoriteController@index');
 // Rota para salvar ou remover uma receita como favorita
 Route::post('/favorites', 'App\Http\Controllers\FavoriteController@store');
 Route::delete('/favorites/{id}', 'App\Http\Controllers\FavoriteController@destroy');
+
+Route::get('/search-translated', 'App\Http\Controllers\RecipeController@searchTranslatedForm');
+Route::post('/search-translated', 'App\Http\Controllers\RecipeController@searchTranslatedRecipes');
+
