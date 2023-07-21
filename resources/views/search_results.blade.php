@@ -1,16 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Resultados da Pesquisa</h2>
-    @if ($recipes->count() > 0)
-        <ul>
-            @foreach ($recipes as $recipe)
-                <li>
-                    <a href="/recipe/{{ $recipe->id }}">{{ $recipe->title }}</a>
-                </li>
-            @endforeach
-        </ul>
-    @else
-        <p>Nenhum resultado encontrado.</p>
-    @endif
+    <div class="container">
+        <h2>Resultados da Pesquisa</h2>
+        @if (!empty($recipes))
+            <div class="recipe-list">
+                @foreach ($recipes as $recipeData)
+                    @php
+                        $recipe = $recipeData['recipe'];
+                    @endphp
+                    <div class="recipe-item">
+                        <img src="{{ $recipe['image'] }}" alt="{{ $recipe['label'] }}" class="recipe-thumbnail">
+                        <h3 class="recipe-title"><a href="{{ $recipe['url'] }}" target="_blank">{{ $recipe['label'] }}</a></h3>
+                        <p class="recipe-info">Tempo de Preparo: {{ $recipe['totalTime'] ?? 'N/A' }}</p>
+                        <p class="recipe-info">Porções: {{ $recipe['yield'] ?? 'N/A' }}</p>
+                        <p class="recipe-info">Calorias: {{ $recipe['calories'] ?? 'N/A' }}</p>
+                        <ul class="recipe-ingredients">
+                            @foreach ($recipe['ingredients'] as $ingredient)
+                                <li>{{ $ingredient['text'] }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p>Nenhum resultado encontrado.</p>
+        @endif
+    </div>
 @endsection
